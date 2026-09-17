@@ -1,0 +1,7 @@
+{
+  "id": "com.example.starter",
+  "name": "Starter add-on",
+  "version": "1",
+  "baseUrl": "https://addons.example.com/starter/1",
+  "extraHosts": []
+}

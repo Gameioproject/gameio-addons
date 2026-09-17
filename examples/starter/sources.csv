@@ -1,0 +1,5 @@
+# Placeholder data: the links below do not exist. Replace them with files you are allowed to share.
+igdb_id,platform,kind,filename,url,ia_item,path,info_hash,file_index,size,md5,sha1,region
+1074,n64,http,,https://downloads.example.com/n64/Example%20Game%20(USA).z64,,,,,8388608,,,USA
+1074,n64,internet_archive,,,example-archive-item,N64/Example Game (Europe).z64,,,,,,Europe
+3378,n64,torrent,,,,Example Collection/N64/Example Game (Japan).zip,0123456789abcdef0123456789abcdef01234567,12,4194304,,,Japan

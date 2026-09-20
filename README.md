@@ -19,6 +19,7 @@ python3 tools/gameio_addon.py init addons/homebrew --id com.you.homebrew --name 
 #    Need IGDB ids?       python3 tools/gameio_addon.py find "game title" --platform snes
 #    Need platform slugs? python3 tools/gameio_addon.py platforms
 #    Have a .torrent?     python3 tools/gameio_addon.py torrent file.torrent --csv --platform snes
+#    Check one game?      python3 tools/gameio_addon.py lookup manifest.json 1234 snes
 
 # 3. Build and check
 python3 tools/gameio_addon.py build --config addons/homebrew/addon.json --sources addons/homebrew/sources.csv
@@ -29,6 +30,30 @@ python3 tools/gameio_addon.py validate addons/homebrew/build/1/manifest.json --r
 ```
 
 Share `manifest.json` with players. They import it in Gameio under **Settings → Add-ons → Import add-on**.
+
+## Publishing
+
+Any static HTTPS host works: the manifest sits at the root, the shards live under
+`<addon>/<version>/`, and the app never asks for anything else.
+
+```
+my-addon.json                     the manifest users import
+my-addon/1/00.json … ff.json      that version's shards
+```
+
+`tools/serve.py` serves exactly that shape and 404s everything else, so several add-ons can
+share one folder without exposing the rest of it:
+
+```bash
+ADDONS_ROOT=./public ADDONS_HOST=127.0.0.1 ADDONS_PORT=3100 python3 tools/serve.py
+```
+
+Put it behind HTTPS with a reverse proxy or a tunnel. The two published Gameio samples,
+[gameio-archive.json](https://addons.playgameio.com/gameio-archive.json) (Internet Archive,
+no account needed) and
+[gameio-minerva-ra.json](https://addons.playgameio.com/gameio-minerva-ra.json) (Real-Debrid,
+RetroAchievements-supported games only), are served this way and are worth reading as
+finished examples.
 
 ## Using Claude
 
